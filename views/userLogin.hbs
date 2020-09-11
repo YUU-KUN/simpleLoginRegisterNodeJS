@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+</head>
+<body>
+    <h2>User Login</h2>
+    <form action="/userLogin" method="POST" autocomplete="on">
+    <input type="hidden" name="_id" value="{{user._id}}">
+    <input type="text" name="email" placeholder="Email" value="{{user.email}}">
+    <input type="text" name="password" placeholder="Password" value="{{user.password}}">
+    <input type="submit" value="Login">
+    </form>
+    <a href="/register">Register</a>
+</body>
+</html>
