@@ -16,17 +16,6 @@ describe('Login Register Tests', function () {
         });
     })
 
-    // describe('# GET User Home Page', function () {
-    //     it('Menampilkan halaman home', function (done) {
-    //         request(app).get('/home').end(function (err, req, res) {
-    //             // expect(req.session.username = true)
-    //             // expect(username).to.be.a('string')
-    //             expect(req.status).to.equal(200)
-    //             done();
-    //         });
-    //     });
-    // })
-
     describe('# GET logout', function () {
         it('logout user - menghapus session', function (done) {
             request(app).get('/logout').end(function (err, req, res) {
