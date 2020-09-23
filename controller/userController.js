@@ -1,17 +1,19 @@
 const express = require('express')
-var router = express.Router()
+// var router = express.Router()
+var app = express()
 const mongoose = require('mongoose');
 
 const User = mongoose.model('User')
 
-router.get('/', function (req, res) {
+app.get('/', function (req, res) {
     if (req.session.username && req.session.email) {
         res.redirect('/home')
+        res.status('200')
     } else {
         res.render('userLogin')
     }
 })
-router.get('/home', function (req, res) {
+app.get('/home', function (req, res) {
     if (req.session.email) {
         res.render('Home', {
             username: req.session.username,
@@ -23,11 +25,11 @@ router.get('/home', function (req, res) {
     }
 })
 
-router.get('/register', function (req, res) {
+app.get('/register', function (req, res) {
     res.render('userRegister')
 })
 
-router.post('/userRegister', function (req, res) {
+app.post('/userRegister', function (req, res) {
     if (req.body._id == '') {
         tambahUser(req, res)
     } else {
@@ -36,7 +38,7 @@ router.post('/userRegister', function (req, res) {
         // console.log('Error registering user');
     }
 })
-router.post('/userLogin', function (req, res) {
+app.post('/userLogin', function (req, res) {
     User.findOne({ email: req.body.email, password: req.body.password }, function (err, user) {
         if (!err) {
             if (user) {
@@ -73,9 +75,9 @@ function tambahUser(req, res) {
     })
 }
 
-router.get('/logout', function (req, res) {
+app.get('/logout', function (req, res) {
     req.session = null
     res.redirect('/')
 })
 
-module.exports = router
+module.exports = app

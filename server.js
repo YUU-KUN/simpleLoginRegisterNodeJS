@@ -30,3 +30,5 @@ app.listen(3000, () => {
 });
 
 app.use('/', userController);
+
+module.exports = { app }
